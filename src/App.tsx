@@ -1,9 +1,17 @@
-import Navbar from "./components/navbar/Navbar";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layout";
+import Home from "./pages/home";
 
 function App() {
   return (
-    <div className="bg-red-300 h-screen md:bg-[#96b5ed] lg:bg-[#dc987f] max-w-[640px] lg:max-w-[1280px] md:max-w-[768px] mx-auto px-8">
-      <Navbar />
+   
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route index element={<Home />}/>
+
+        </Route>
+      </Routes>
     </div>
   );
 }
