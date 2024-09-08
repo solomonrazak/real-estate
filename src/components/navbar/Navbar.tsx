@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
       <div className="flex items-center gap-10 w-[60%]">
         <a href="/" className="flex items-center hover:scale-110 transition-all duration-200 group">
           <img src={reallogo} width={90} height={70} alt="logo" />
-          <span className="md:hidden lg:block">Zack Estates</span>
+          <span className="md:hidden lg:block font-medium">Zack Estates</span>
         </a>
         <ul className="hidden md:flex items-center gap-14">
           <li className="hover:scale-110 transition-all duration-200">Home</li>
