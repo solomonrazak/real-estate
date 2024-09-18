@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import reallogo from "../../assets/images/reallogo.png";
 import hamburger from "../../assets/images/hamburger.png";
+import { Link } from '@tanstack/react-router';
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false); // Default state is closed
@@ -13,8 +14,8 @@ const Navbar: React.FC = () => {
           <span className="md:hidden lg:block font-medium">Zack Estates</span>
         </a>
         <ul className="hidden md:flex items-center gap-14">
-          <li className="hover:scale-110 transition-all duration-200">Home</li>
-          <li className="hover:scale-110 transition-all duration-200">About</li>
+         
+         <Link to="/about"><li className="hover:scale-110 transition-all duration-200">About</li></Link>
           <li className="hover:scale-110 transition-all duration-200">Contact</li>
           <li className="hover:scale-110 transition-all duration-200">Agent</li>
         </ul>
