@@ -21,7 +21,7 @@ const Filter = () => {
             id="city"
             name="city"
             placeholder="City Location"
-            className="border border-gray-400 text-[13px] py-1 pl-3"
+            className="border border-gray-400 text-[13px] py-2 pl-3 rounded-sm"
           />
         </div>
       </div>
@@ -31,11 +31,11 @@ const Filter = () => {
           <label htmlFor="type" className="text-[14px] mb-1">
             Type
           </label>
-          <div className="relative">
+          
             <select
               id="type"
               name="type"
-              className="appearance-none border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700 "
+              className="border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700"
             >
               <option value="" className="hover:bg-green-300">
                 any
@@ -44,27 +44,19 @@ const Filter = () => {
               <option value="rent">Rent</option>
               
             </select>
-            <div className="absolute inset-y-0 right-0 top-2 flex items-center px-2 pointer-events-none">
-              <svg
-                className="w-4 h-4 fill-current text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 12l-6-6h12l-6 6z" />
-              </svg>
-            </div>
-          </div>
+            
+          
         </div>
 
         <div className="flex flex-col">
           <label htmlFor="property" className="text-[14px] mb-1">
             Property
           </label>
-          <div className="relative">
+          
             <select
               id="property"
               name="property"
-              className="appearance-none border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700 "
+              className=" border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700 "
             >
               <option value="" className="hover:bg-green-300">
                 any
@@ -74,16 +66,8 @@ const Filter = () => {
               <option value="condo">Condo</option>
               <option value="land">Land</option>
             </select>
-            <div className="absolute inset-y-0 right-0 top-2 flex items-center px-2 pointer-events-none">
-              <svg
-                className="w-4 h-4 fill-current text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 12l-6-6h12l-6 6z" />
-              </svg>
-            </div>
-          </div>
+           
+         
         </div>
 
         <div className="flex flex-col">
@@ -95,7 +79,7 @@ const Filter = () => {
             id="minPrice"
             name="minPrice"
             placeholder="any"
-            className="py-2 border px-2"
+            className="py-2 border px-2 border-gray-400 rounded-md "
           />
         </div>
 
@@ -108,7 +92,7 @@ const Filter = () => {
             id="maxPrice"
             name="maxPrice"
             placeholder="any"
-            className="py-2 border px-2"
+            className="py-2 px-2 border border-gray-400 rounded-md"
           />
         </div>
 
@@ -121,11 +105,11 @@ const Filter = () => {
             id="bedroom"
             name="bedroom"
             placeholder="any"
-            className="py-2 border px-2"
+            className="py-2 border px-2 border-gray-400 rounded-md "
           />
         </div>
         <div className="flex items-end ">
-          <button className="bg-yellow-300 flex justify-center items-center h-11 w-full">
+          <button className="bg-yellow-300 flex justify-center items-center h-11 w-full rounded-md">
             <FaSearch className="text-white text-2xl" />
           </button>
         </div>
