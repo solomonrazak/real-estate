@@ -3,6 +3,7 @@ import { listData } from '../../lib/dummydata';
 import Filter from '../../components/filter/Filter';
 import Card from '../../components/card/Card';
 import './list.css';
+import Map from '../../components/map/Map';
 
 const ListPage:React.FC = () => {
 
@@ -23,7 +24,7 @@ const ListPage:React.FC = () => {
             </div>
         </div>
         <div className="w-[40%] bg-[#fcf5f3] h-full">
-            map
+            <Map items={data}/>
         </div>
     </div>
   )
