@@ -14,10 +14,10 @@ const SingleListPage: React.FC = () => {
   console.log({listId})  
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full h-full gap-7">
         <div className="w-[60%]">
             <Slider images={data.images}/>
-            <div className="mt-6">
+            <div className="mt-6 w-full pr-7">
                 <div className="flex justify-between">
                     <div className="flex flex-col justify-between gap-1">
                         <h1 className="font-medium text-[24px]">{data.title}</h1>
