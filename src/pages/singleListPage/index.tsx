@@ -14,10 +14,10 @@ const SingleListPage: React.FC = () => {
   console.log({listId})  
 
   return (
-    <div className="flex w-full h-full gap-7">
-        <div className="w-[60%]">
+    <div className="flex w-full h-full min-h-full">
+        <div className="w-[60%] pr-5">
             <Slider images={data.images}/>
-            <div className="mt-6 w-full pr-7">
+            <div className="mt-6 w-full xl:pr-7">
                 <div className="flex justify-between">
                     <div className="flex flex-col justify-between gap-1">
                         <h1 className="font-medium text-[24px]">{data.title}</h1>
@@ -37,7 +37,12 @@ const SingleListPage: React.FC = () => {
                 <div className="mt-10">{data.description}</div>
             </div>
         </div>
-        <div className="w-[40%]"></div>
+        <div className="w-[40%] bg-[#fcf5f3] h-[100vh]">
+            <div><p>General</p></div>
+            <div><p>Room Sizes</p></div>
+            <div><p>Nearby Places</p></div>
+            <div><p>Location</p></div>
+        </div>
 
     </div>
   )

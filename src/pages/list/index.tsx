@@ -9,7 +9,7 @@ const ListPage:React.FC = () => {
 
     const data = listData;
   return (
-    <div className="w-full h-full flex">
+    <div className="w-full h-full flex min-h-full">
         <div className="w-[60%] overflow-y-scroll hide-scrollbar">
             <Filter />
             <div>
