@@ -13,8 +13,10 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ListImport } from './routes/list'
+import { Route as ContactImport } from './routes/contact'
 import { Route as AboutImport } from './routes/about'
+import { Route as ListIndexImport } from './routes/list/index'
+import { Route as ListListIdImport } from './routes/list.$listId'
 
 // Create Virtual Routes
 
@@ -22,8 +24,8 @@ const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const ListRoute = ListImport.update({
-  path: '/list',
+const ContactRoute = ContactImport.update({
+  path: '/contact',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -36,6 +38,16 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const ListIndexRoute = ListIndexImport.update({
+  path: '/list/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ListListIdRoute = ListListIdImport.update({
+  path: '/list/$listId',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -55,11 +67,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/list': {
-      id: '/list'
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactImport
+      parentRoute: typeof rootRoute
+    }
+    '/list/$listId': {
+      id: '/list/$listId'
+      path: '/list/$listId'
+      fullPath: '/list/$listId'
+      preLoaderRoute: typeof ListListIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/list/': {
+      id: '/list/'
       path: '/list'
       fullPath: '/list'
-      preLoaderRoute: typeof ListImport
+      preLoaderRoute: typeof ListIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -70,41 +96,51 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutRoute
-  '/list': typeof ListRoute
+  '/contact': typeof ContactRoute
+  '/list/$listId': typeof ListListIdRoute
+  '/list': typeof ListIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutRoute
-  '/list': typeof ListRoute
+  '/contact': typeof ContactRoute
+  '/list/$listId': typeof ListListIdRoute
+  '/list': typeof ListIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/about': typeof AboutRoute
-  '/list': typeof ListRoute
+  '/contact': typeof ContactRoute
+  '/list/$listId': typeof ListListIdRoute
+  '/list/': typeof ListIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/list'
+  fullPaths: '/' | '/about' | '/contact' | '/list/$listId' | '/list'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/list'
-  id: '__root__' | '/' | '/about' | '/list'
+  to: '/' | '/about' | '/contact' | '/list/$listId' | '/list'
+  id: '__root__' | '/' | '/about' | '/contact' | '/list/$listId' | '/list/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutRoute: typeof AboutRoute
-  ListRoute: typeof ListRoute
+  ContactRoute: typeof ContactRoute
+  ListListIdRoute: typeof ListListIdRoute
+  ListIndexRoute: typeof ListIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutRoute: AboutRoute,
-  ListRoute: ListRoute,
+  ContactRoute: ContactRoute,
+  ListListIdRoute: ListListIdRoute,
+  ListIndexRoute: ListIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -121,7 +157,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/list"
+        "/contact",
+        "/list/$listId",
+        "/list/"
       ]
     },
     "/": {
@@ -130,8 +168,14 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
-    "/list": {
-      "filePath": "list.tsx"
+    "/contact": {
+      "filePath": "contact.tsx"
+    },
+    "/list/$listId": {
+      "filePath": "list.$listId.tsx"
+    },
+    "/list/": {
+      "filePath": "list/index.tsx"
     }
   }
 }

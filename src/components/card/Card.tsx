@@ -5,6 +5,7 @@ import { LuBath } from "react-icons/lu";
 import { ListItem } from "../../lib/dummydata";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiTempHigh } from "react-icons/ci";
+import { Link } from "@tanstack/react-router";
 
 interface CardProps {
   item: ListItem;
@@ -14,9 +15,13 @@ const Card: React.FC<CardProps> = ({ item }) => {
   return (
     <div className="flex w-full justify-between mb-5 pr-8 mt-5">
       <div className="flex gap-5">
+        
         <img src={item.img} width={200} height={200} className="rounded-md" />
+       
         <div className="flex flex-col justify-between">
+          <Link to={`/${item.id}`}>
           <p className="font-medium">Apartment {item.title}</p>
+          </Link>
           <div className="flex items-center">
             <p>{item.address}</p>
             <CiLocationOn />
