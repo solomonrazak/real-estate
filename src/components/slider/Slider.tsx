@@ -37,10 +37,10 @@ const Slider: React.FC<ISlider> = ({ images }) => {
               onClick={() => changeSlider("left")}
             />
           </div>
-          <div className="w-full h-full rounded-md flex items-center overflow-clip">
+          <div className="w-full h-full rounded-md flex items-center overflow-clip cursor-pointer">
             <img
               src={images[imageIndex]}
-              className="rounded-md mt-7 h-full object-contain w-full h-full"
+              className="rounded-md mt-7 object-contain w-full h-full"
             />
           </div>
           <div>
@@ -61,7 +61,7 @@ const Slider: React.FC<ISlider> = ({ images }) => {
         <div className="w-[75%] h-full">
           <img
             src={images[0]}
-            className="rounded-md object-cover"
+            className="rounded-md object-cover cursor-pointer"
             alt=""
             onClick={() => setImageIndex(0)}
           />
@@ -71,7 +71,7 @@ const Slider: React.FC<ISlider> = ({ images }) => {
             <img
               src={image}
               key={index}
-              className=" rounded-md object-cover h-[5.7rem] w-36"
+              className=" rounded-md object-cover h-[5.7rem] w-36 cursor-pointer"
               alt=""
               onClick={() => setImageIndex(index + 1)}
             />
