@@ -13,12 +13,15 @@ import { LuBath } from "react-icons/lu";
 import { FaSchool } from "react-icons/fa";
 import { TbBusStop } from "react-icons/tb";
 import { MdTableRestaurant } from "react-icons/md";
+import { FaRegMessage } from "react-icons/fa6";
+import { BsSave2 } from "react-icons/bs";
 import Map from "../../components/map/Map";
 import { listData } from "../../lib/dummydata";
 
 const data = singlePostData;
 
-const newData = listData;
+
+
 
 
 const SingleListPage: React.FC = () => {
@@ -27,8 +30,8 @@ const SingleListPage: React.FC = () => {
   console.log({listId})  
 
   return (
-    <div className="flex w-full min-h-full">
-        <div className="w-[60%] pr-5">
+    <div className="flex flex-col lg:flex-row w-full h-full min-h-full">
+        <div className="w-full lg:w-[60%] pr-5">
             <Slider images={data.images}/>
             <div className="mt-6 w-full xl:pr-7">
                 <div className="flex justify-between">
@@ -50,7 +53,7 @@ const SingleListPage: React.FC = () => {
                 <div className="mt-10">{data.description}</div>
             </div>
         </div>
-        <div className="w-[40%] bg-[#fcf5f3] h-full px-5 flex-flex-col space-y-5 pb-10">
+        <div className="w-full lg:w-[40%] bg-[#fcf5f3] h-full px-5 flex-flex-col space-y-5 pb-10 mt-8 lg:mt-0 pt-5 lg:py-0">
             <div>
                 <p className="mb-5 font-medium">General</p>
                 <div className="bg-white rounded-t-md">
@@ -85,15 +88,15 @@ const SingleListPage: React.FC = () => {
                 <p className="font-medium mb-5">Room Sizes</p>
                 <div className="flex w-full justify-between">
                     <div  className="bg-white flex items-center gap-2 py-2 px-2 rounded-sm">
-                    <LuSquareDashedBottom />
-                    <p>80kps(36sqf)</p>
+                    <LuSquareDashedBottom className="hidden lg:block"/>
+                    <p className="xl:flex"><span>80kps</span><span className="lg:hidden">(hrhrh)</span></p>
                     </div>
                     <div  className="bg-white flex items-center gap-2 py-2 px-2 rounded-sm">
-                    <IoBedOutline />
+                    <IoBedOutline className="hidden lg:block"/>
                     <p>2 bedroom</p>
                     </div>
                     <div  className="bg-white flex items-center gap-2 py-2 px-2 rounded-sm">
-                    <LuBath />
+                    <LuBath className="hidden lg:block"/>
                     <p>1 bathroom</p>
                     </div>
                 </div>
@@ -101,8 +104,8 @@ const SingleListPage: React.FC = () => {
             </div>
             <div>
                 <p className="font-medium mb-5">Nearby Places</p>
-                <div className="flex w-full">
-                    <div className="flex bg-white items-center gap-2 pl-2 py-2 pr-9 rounded-l-sm">
+                <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 w-full">
+                    <div className="flex bg-white items-center gap-5 lg:gap-2 pl-2 py-2 pr-9 rounded-l-sm">
                     <FaSchool className="text-[22px]"/>
                     <p className="flex flex-col">
                         <span className="font-medium">School</span>
@@ -110,7 +113,7 @@ const SingleListPage: React.FC = () => {
                     </p>
 
                     </div>
-                    <div className="flex bg-white items-center gap-3 pl-2 py-2 pr-9">
+                    <div className="flex bg-white items-center gap-5 lg:gap-3 pl-2 py-2 pr-9">
                     <TbBusStop className="text-[22px]"/>
                     <p className="flex flex-col">
                         <span className="font-medium">Bus Stop</span>
@@ -118,7 +121,7 @@ const SingleListPage: React.FC = () => {
                     </p>
 
                     </div>
-                    <div className="flex bg-white items-center gap-3 pl-2 py-2 pr-9 rounded-r-sm">
+                    <div className="flex bg-white items-center gap-3 lg:gap-3 pl-2 py-2 pr-9 rounded-r-sm">
                     <MdTableRestaurant className="text-[22px]"/>
                     <p className="flex flex-col">
                         <span className="font-medium">Restaurant</span>
@@ -128,12 +131,16 @@ const SingleListPage: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="">
                 <p className="mb-5 font-medium">Location</p>
-                <div className="w-full h-56">
-                <Map items={newData}/>
+                <div className="w-full h-56 bg-[#fcf5f3]">
+                <Map items={listData}/>
                 </div>
                 
+            </div>
+            <div className="flex justify-between pt-3">
+                <button className="flex items-center gap-2 bg-white border border-yellow-300 rounded-md p-2"><FaRegMessage className="mt-1"/>Send A Message</button>
+                <button className="flex items-center gap-2 bg-white border border-yellow-300 rounded-md p-2"><BsSave2 className="mt-1"/>Save Property</button>
             </div>
         </div>
 

@@ -57,21 +57,21 @@ const Slider: React.FC<ISlider> = ({ images }) => {
           </div>
         </div>
       )}
-      <div className="flex gap-4">
-        <div className="w-[75%] h-full">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="w-full lg:w-[75%] h-full">
           <img
             src={images[0]}
-            className="rounded-md object-cover cursor-pointer"
+            className="rounded-md object-cover cursor-pointer h-full"
             alt=""
             onClick={() => setImageIndex(0)}
           />
         </div>
-        <div className="w-[25%] flex flex-col justify-between">
+        <div className="w-full lg:w-[25%] flex lg:flex-col justify-between gap-1 md:gap-4 lg:gap-1">
           {images.slice(1).map((image, index) => (
             <img
               src={image}
               key={index}
-              className=" rounded-md object-cover h-[5.7rem] w-36 cursor-pointer"
+              className=" rounded-md object-cover h-[5.7rem] w-full lg:w-36 cursor-pointer"
               alt=""
               onClick={() => setImageIndex(index + 1)}
             />
