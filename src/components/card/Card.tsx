@@ -13,10 +13,10 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ item }) => {
   return (
-    <div className="flex w-full justify-between mb-5 pr-8 mt-5">
+    <div className="flex w-full justify-between mb-5 pr-5 mt-5">
       <div className="flex gap-5">
         
-        <img src={item.img} width={200} height={200} className="rounded-md" />
+        <img src={item.img} width={200} height={200} className="hidden md:flex rounded-md" />
        
         <div className="flex flex-col justify-between">
           <Link to={`/${item.id}`}>
