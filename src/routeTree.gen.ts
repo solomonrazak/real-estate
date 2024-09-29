@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as ContactImport } from './routes/contact'
 import { Route as AboutImport } from './routes/about'
+import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as ListIndexImport } from './routes/list/index'
 import { Route as ListListIdImport } from './routes/list.$listId'
 
@@ -38,6 +39,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const ProfileIndexRoute = ProfileIndexImport.update({
+  path: '/profile/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ListIndexRoute = ListIndexImport.update({
   path: '/list/',
@@ -88,6 +94,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListIndexImport
       parentRoute: typeof rootRoute
     }
+    '/profile/': {
+      id: '/profile/'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -99,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/list/$listId': typeof ListListIdRoute
   '/list': typeof ListIndexRoute
+  '/profile': typeof ProfileIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -107,6 +121,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/list/$listId': typeof ListListIdRoute
   '/list': typeof ListIndexRoute
+  '/profile': typeof ProfileIndexRoute
 }
 
 export interface FileRoutesById {
@@ -116,14 +131,28 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/list/$listId': typeof ListListIdRoute
   '/list/': typeof ListIndexRoute
+  '/profile/': typeof ProfileIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/list/$listId' | '/list'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/list/$listId'
+    | '/list'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/list/$listId' | '/list'
-  id: '__root__' | '/' | '/about' | '/contact' | '/list/$listId' | '/list/'
+  to: '/' | '/about' | '/contact' | '/list/$listId' | '/list' | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/list/$listId'
+    | '/list/'
+    | '/profile/'
   fileRoutesById: FileRoutesById
 }
 
@@ -133,6 +162,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ListListIdRoute: typeof ListListIdRoute
   ListIndexRoute: typeof ListIndexRoute
+  ProfileIndexRoute: typeof ProfileIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -141,6 +171,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ListListIdRoute: ListListIdRoute,
   ListIndexRoute: ListIndexRoute,
+  ProfileIndexRoute: ProfileIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -159,7 +190,8 @@ export const routeTree = rootRoute
         "/about",
         "/contact",
         "/list/$listId",
-        "/list/"
+        "/list/",
+        "/profile/"
       ]
     },
     "/": {
@@ -176,6 +208,9 @@ export const routeTree = rootRoute
     },
     "/list/": {
       "filePath": "list/index.tsx"
+    },
+    "/profile/": {
+      "filePath": "profile/index.tsx"
     }
   }
 }
