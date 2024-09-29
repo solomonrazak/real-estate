@@ -194,7 +194,7 @@ const Chat: React.FC = () => {
             </div>
           </div>
           <div className="flex border border-t-yellow-400 justify-between">
-            <textarea className="w-[85%]"></textarea>
+            <textarea className="w-[85%] px-3 py-1 focus:outline-none"></textarea>
             <button className="bg-yellow-400 px-4 font-medium">Send</button>
           </div>
         </div>
