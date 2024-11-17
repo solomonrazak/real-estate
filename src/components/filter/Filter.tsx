@@ -27,47 +27,42 @@ const Filter = () => {
       </div>
       {/* bottom */}
       <div className="grid grid-cols-6 w-full gap-4 mt-3">
-      <div className="flex flex-col">
+        <div className="flex flex-col">
           <label htmlFor="type" className="text-[14px] mb-1">
             Type
           </label>
-          
-            <select
-              id="type"
-              name="type"
-              className="border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700"
-            >
-              <option value="" className="hover:bg-green-300">
-                any
-              </option>
-              <option value="buy">Buy</option>
-              <option value="rent">Rent</option>
-              
-            </select>
-            
-          
+
+          <select
+            id="type"
+            name="type"
+            className="border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700"
+          >
+            <option value="" className="hover:bg-green-300">
+              any
+            </option>
+            <option value="buy">Buy</option>
+            <option value="rent">Rent</option>
+          </select>
         </div>
 
         <div className="flex flex-col">
           <label htmlFor="property" className="text-[14px] mb-1">
             Property
           </label>
-          
-            <select
-              id="property"
-              name="property"
-              className=" border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700 "
-            >
-              <option value="" className="hover:bg-green-300">
-                any
-              </option>
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
-              <option value="condo">Condo</option>
-              <option value="land">Land</option>
-            </select>
-           
-         
+
+          <select
+            id="property"
+            name="property"
+            className=" border border-gray-400 pr-8 pl-2 py-2 rounded-md text-gray-700 "
+          >
+            <option value="" className="hover:bg-green-300">
+              any
+            </option>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="condo">Condo</option>
+            <option value="land">Land</option>
+          </select>
         </div>
 
         <div className="flex flex-col">
