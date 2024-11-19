@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as RegisterImport } from './routes/register'
+import { Route as LoginImport } from './routes/login'
 import { Route as ContactImport } from './routes/contact'
 import { Route as AboutImport } from './routes/about'
 import { Route as ProfileIndexImport } from './routes/profile/index'
@@ -28,6 +29,11 @@ const IndexLazyImport = createFileRoute('/')()
 
 const RegisterRoute = RegisterImport.update({
   path: '/register',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LoginRoute = LoginImport.update({
+  path: '/login',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -86,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactImport
       parentRoute: typeof rootRoute
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -123,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/list/$listId': typeof ListListIdRoute
   '/list': typeof ListIndexRoute
@@ -133,6 +147,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/list/$listId': typeof ListListIdRoute
   '/list': typeof ListIndexRoute
@@ -144,6 +159,7 @@ export interface FileRoutesById {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/list/$listId': typeof ListListIdRoute
   '/list/': typeof ListIndexRoute
@@ -156,6 +172,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/login'
     | '/register'
     | '/list/$listId'
     | '/list'
@@ -165,6 +182,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/login'
     | '/register'
     | '/list/$listId'
     | '/list'
@@ -174,6 +192,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/login'
     | '/register'
     | '/list/$listId'
     | '/list/'
@@ -185,6 +204,7 @@ export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
   ListListIdRoute: typeof ListListIdRoute
   ListIndexRoute: typeof ListIndexRoute
@@ -195,6 +215,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
   ListListIdRoute: ListListIdRoute,
   ListIndexRoute: ListIndexRoute,
@@ -216,6 +237,7 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/contact",
+        "/login",
         "/register",
         "/list/$listId",
         "/list/",
@@ -230,6 +252,9 @@ export const routeTree = rootRoute
     },
     "/contact": {
       "filePath": "contact.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
     },
     "/register": {
       "filePath": "register.tsx"
