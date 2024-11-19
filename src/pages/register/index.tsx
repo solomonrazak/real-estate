@@ -3,12 +3,17 @@ import bg from "../../assets/images/bg.png";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import axios from "axios";
+import { useNavigate } from "@tanstack/react-router";
+import apiRequest from "../../lib/apiRequest";
 
 const Register: React.FC = () => {
+  const navigate = useNavigate({ from: "/register" });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
     const username = formData.get("username");
@@ -17,14 +22,23 @@ const Register: React.FC = () => {
 
     console.log(username, email, password);
     try {
-      const res = await axios.post("http://localhost:8005/api/auth/register", {
+      const res = await apiRequest.post("auth/register", {
         username,
         email,
         password,
       });
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
+      navigate({ to: "/login" });
+      // console.log(res.data);
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        setError(err.response.data.message); // Safely access response data
+      } else {
+        setError("An unexpected error occurred.");
+      }
+      console.error(err);
+    }
+    finally{
+      setIsLoading(false);
     }
   };
   return (
@@ -36,7 +50,8 @@ const Register: React.FC = () => {
           <Input name="username" type="text" placeholder="Username" />
           <Input name="email" type="email" placeholder="Email" />
           <Input name="password" type="password" placeholder="Password" />
-          <Button name="Register" type="submit" />
+          <Button disabled={isLoading} name="Register" type="submit" />
+          {error && <span>{error}</span>}
 
           <p className="underline">Do you have an acccount?</p>
         </form>
