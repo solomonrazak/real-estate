@@ -4,6 +4,7 @@ import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import axios from "axios";
 import apiRequest from "../../lib/apiRequest";
+import { Link } from "@tanstack/react-router";
 
 const Login: React.FC = () => {
   const [error, setError] = useState("");
@@ -46,7 +47,7 @@ const Login: React.FC = () => {
           <Button disabled={isLoading} name="Login" type="submit" />
           {error && <span>{error}</span>}
 
-          <p className="underline">Don't have an acccount?</p>
+          <Link to="/about"><p className="underline">Don't have an acccount?</p></Link>
         </form>
       </div>
       <div className="hidden w-[40%] bg-[#fcf5f3] h-full relative md:flex items-center">
