@@ -47,9 +47,9 @@ const Register: React.FC = () => {
         <p className="mb-7 font-bold text-[20px]">Create an Account</p>
 
         <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
-          <Input name="username" type="text" placeholder="Username" />
-          <Input name="email" type="email" placeholder="Email" />
-          <Input name="password" type="password" placeholder="Password" />
+          <Input name="username" required type="text" placeholder="Username" />
+          <Input name="email" required type="email" placeholder="Email" />
+          <Input name="password" required type="password" placeholder="Password" />
           <Button disabled={isLoading} name="Register" type="submit" />
           {error && <span>{error}</span>}
 

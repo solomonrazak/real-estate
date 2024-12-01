@@ -5,8 +5,10 @@ import Button from "../../components/ui/Button";
 import axios from "axios";
 import apiRequest from "../../lib/apiRequest";
 import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate({from: "/login"})
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,6 +26,9 @@ const Login: React.FC = () => {
             username,
             password
         })
+        // using local storage to save user data
+        localStorage.setItem("user", JSON.stringify(res.data))
+        navigate({to: "/"})
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         setError(err.response.data.message); // Safely access response data
@@ -42,8 +47,8 @@ const Login: React.FC = () => {
         <p className="mb-7 font-bold text-[20px]">Welcome Back</p>
 
         <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
-          <Input name="username" type="text" placeholder="Username" />
-          <Input name="password" type="password" placeholder="Password" />
+          <Input name="username" required type="text" placeholder="Username" />
+          <Input name="password" required type="password" placeholder="Password" />
           <Button disabled={isLoading} name="Login" type="submit" />
           {error && <span>{error}</span>}
 

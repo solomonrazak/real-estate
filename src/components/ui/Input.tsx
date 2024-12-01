@@ -5,6 +5,7 @@ interface InputProps {
   placeholder: string;
   name: string;
   value?: string;
+  required: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -13,6 +14,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   name,
+  required,
   onChange,
 }) => {
   return (
@@ -21,6 +23,7 @@ const Input: React.FC<InputProps> = ({
       name={name}
       placeholder={placeholder}
       value={value}
+      required={required}
       onChange={onChange}
       className="border-[1.5px] border-slate-500 w-[220px] py-2 rounded-md pl-5"
     />
