@@ -8,27 +8,38 @@ import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 
 const Login: React.FC = () => {
-  const navigate = useNavigate({from: "/login"})
+  const navigate = useNavigate({ from: "/login" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    const formData = new FormData();
-    const username = formData.get("username");
-    const password = formData.get("password");
+    // const formData = new FormData();
+    // const username = formData.get("username");
+    // const password = formData.get("password");
 
-    console.log(username, password);
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username") as string;
+    const password = formData.get("password") as string;
+
+
+    console.log("Username:", username, "Password:", password);
+
+    if (!username || !password) {
+      setError("Username and password are required.");
+      setIsLoading(false);
+      return;
+    }
 
     try {
-        const res = await apiRequest.post("/auth/login", {
-            username,
-            password
-        })
-        // using local storage to save user data
-        localStorage.setItem("user", JSON.stringify(res.data))
-        navigate({to: "/"})
+      const res = await apiRequest.post("/auth/login", {
+        username,
+        password,
+      });
+      // using local storage to save user data
+      localStorage.setItem("user", JSON.stringify(res.data));
+      navigate({ to: "/" });
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         setError(err.response.data.message); // Safely access response data
@@ -48,11 +59,18 @@ const Login: React.FC = () => {
 
         <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
           <Input name="username" required type="text" placeholder="Username" />
-          <Input name="password" required type="password" placeholder="Password" />
+          <Input
+            name="password"
+            required
+            type="password"
+            placeholder="Password"
+          />
           <Button disabled={isLoading} name="Login" type="submit" />
-          {error && <span>{error}</span>}
+          {error && <span className="text-red-500">{error}</span>}
 
-          <Link to="/about"><p className="underline">Don't have an acccount?</p></Link>
+          <Link to="/about">
+            <p className="underline">Don't have an acccount?</p>
+          </Link>
         </form>
       </div>
       <div className="hidden w-[40%] bg-[#fcf5f3] h-full relative md:flex items-center">

@@ -51,7 +51,7 @@ const Register: React.FC = () => {
           <Input name="email" required type="email" placeholder="Email" />
           <Input name="password" required type="password" placeholder="Password" />
           <Button disabled={isLoading} name="Register" type="submit" />
-          {error && <span>{error}</span>}
+          {error && <span className="text-red-500">{error}</span>}
 
           <p className="underline">Do you have an acccount?</p>
         </form>

@@ -32,10 +32,14 @@ const login = async (req, res) => {
     //db operation - user login
     const {username , password} = req.body;
 
+    if(!username || !password){
+      return res.status(400).json({ message: "Username and password are required." })
+    }
+
   try {
      //CHECK IF USER EXISTS
     const user = await prisma.user.findUnique({
-      where:{username}
+      where:{username: username}
     })
     if(!user) return res.status(401).json({msg: "Invalid Credentials"})
 
@@ -58,12 +62,13 @@ const login = async (req, res) => {
    
 
     const {password: userPassword, ...userInfo} = user;
-    
+
     res.cookie("token", token, {
       httpOnly: true,
       // secure: true - make sure you set to true in production mode https
       maxAge: age,
     }).status(200).json({userInfo})
+    console.log(req.body);
   }
   catch(error){
     console.log(error);
