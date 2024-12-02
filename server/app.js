@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cookieParser from "cookie-parser"; 
 import postRoute from './routes/post.route.js';
 import userRoute from './routes/auth.route.js';
+import testRoute from './routes/test.route.js';
 
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(cookieParser()) // cookie parser middleware to set and read cookies
 
 app.use("/api/posts", postRoute) // common end point
 app.use("/api/auth", userRoute)
+app.use("/api/test", testRoute);
 
 
 

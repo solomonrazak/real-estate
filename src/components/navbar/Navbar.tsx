@@ -4,6 +4,7 @@ import hamburger from "../../assets/images/hamburger.png";
 import profile from "../../assets/images/profile.jpg";
 import { Link } from "@tanstack/react-router";
 
+
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
 
