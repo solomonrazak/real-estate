@@ -6,11 +6,14 @@ import axios from "axios";
 import apiRequest from "../../lib/apiRequest";
 import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
+import { useAuth } from "../../context/authContext";
 
 const Login: React.FC = () => {
   const navigate = useNavigate({ from: "/login" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const {updateUser} = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,8 +40,8 @@ const Login: React.FC = () => {
         username,
         password,
       });
-      // using local storage to save user data
-      localStorage.setItem("user", JSON.stringify(res.data));
+      // using local storage to save user data - before - now we use update user from context to update the data of current user
+     updateUser(res.data);
       navigate({ to: "/" });
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {

@@ -3,12 +3,15 @@ import reallogo from "../../assets/images/reallogo.png";
 import hamburger from "../../assets/images/hamburger.png";
 import profile from "../../assets/images/profile.jpg";
 import { Link } from "@tanstack/react-router";
+import { useAuth } from "../../context/authContext";
 
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
 
-  const user: boolean = true;
+
+
+  const {currentUser} = useAuth();
 
   return (
     <nav className="flex justify-between h-[100px] items-center relative">
@@ -33,7 +36,7 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
       <div className="w-[40%] md:bg-[#fcf5f3] h-full flex gap-6 md:gap-0 items-center justify-end p-2">
-        {user ? (
+        {currentUser ? (
           <div className="flex gap-4 items-center">
             <img
               src={profile}
@@ -41,7 +44,7 @@ const Navbar: React.FC = () => {
               height={50}
               className="object-cover w-7 h-7 rounded-full"
             />
-            <span className="hidden md:block font-medium text-[15px]">Solomon Razak</span>
+            <span className="hidden md:block font-medium text-[15px]">{currentUser}</span>
             <Link to="/profile" className="hidden md:block relative bg-yellow-300">
             <div className="absolute bg-red-600 text-white w-4 h-4 rounded-full text-[9px] text-center right-[-5px] top-[-5px]">3</div>
               <p className="px-3 py-1 font-medium text-[14px]">

@@ -1,10 +1,15 @@
 import React from "react";
 import bg from "../../assets/images/bg.png";
 import SearchBar from "../../components/searchbar";
+import { useAuth } from "../../context/authContext";
 
 interface Ihome {}
 
 const Home: React.FC = () => {
+
+  const {currentUser} = useAuth();
+
+  console.log(currentUser);
   return (
     <div className="flex h-full">
       <div className="w-full md:w-[60%] h-full flex flex-col gap-11 px-6 justify-center">

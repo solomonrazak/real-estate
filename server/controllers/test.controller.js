@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"; 
 
-const shouldBeLoggedIn = async (req, res) => {
+const shouldBeLoggedIn =  (req, res) => {
   const token = req.cookies.token;
   if(!token) return res.status(401).json({message: "Not authenticated"});  // token is not available
     jwt.verify(token, process.env.JWT_SECRET_KEY, async(err, payload) => {
@@ -14,7 +14,7 @@ res.status(200).json({message: "You are authenticated"});  //token is available 
 
 
 // check authorzation for admin
-const shouldBeAdmin = async(req, res) => {
+const shouldBeAdmin = (req, res) => {
   const token = req.cookies.token;
   if(!token) return res.status(401).json({message: "Not authenticated"});
     jwt.verify(token, process.env.JWT_SECRET_KEY, async(err, payload) => {
